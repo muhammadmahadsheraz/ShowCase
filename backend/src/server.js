@@ -7,7 +7,7 @@ const __dirname = path.resolve();
 app.get("/", (req, res) => {
     res.status(200).json({message: "hey from the server 123"});
 });
-if(ENV.APPLICATION_STATUS === "production"){
+if(ENV.NODE_ENV === "production"){
     app.use(express.static(path.join(__dirname, "frontend/dist")));
     app.get("/{*any}", (req, res) => {
         res.sendFile(path.join(__dirname, "frontend/dist/index.html"));
@@ -22,6 +22,8 @@ const connectServer =  async () =>{
         });
     } catch (error) {
         console.log("Error in connecting to the server",error);
+        process.exit(1);
+
     }
 }
 connectServer();
