@@ -20,6 +20,11 @@ const connectServer =  async () =>{
         await connectDB();
         app.listen(ENV.PORT, () => {
             console.log("server is running on port",ENV.PORT);
+            console.log("server is running on port",ENV.PORT);
+            console.log("server is running on port",ENV.PORT);
+            console.log("server is running on port",ENV.PORT);
+
+
         });
     } catch (error) {
         console.log("Error in connecting to the server",error);
