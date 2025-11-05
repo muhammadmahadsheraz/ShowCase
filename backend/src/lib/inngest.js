@@ -26,7 +26,9 @@ const syncUser = inngest.createFunction(
       id: newUser.clerkId.toString(),
       name: newUser.name,
       image: newUser.profileImage,
-    }); // Sync user to Stream
+    });
+
+    // Sync user to Stream
     console.log("✅ User synced to DB:", newUser.email);
   }
 );
@@ -40,8 +42,8 @@ const deleteUserFromDB = inngest.createFunction(
 
     const { id } = event.data;
     await User.deleteOne({ clerkId: id });
-    await deleteStreamUser(id.toString()); // Delete user from Stream
-
+    // Delete user from Stream
+    await deleteStreamUser(id.toString()); 
     console.log("🗑️ User deleted from DB:", id);
   }
 );

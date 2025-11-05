@@ -5,15 +5,15 @@ function App() {
   return (
     <>
       <h1>Hello World</h1>    
-<SignedOut>
-     <SignInButton  mode="modal">  
-      <button>Log In</button>
-     </SignInButton>  
-  </SignedOut>
-<SignedIn>
-  <SignOutButton/>
-</SignedIn>
-  <UserButton />
+      <SignedOut>
+        <SignInButton  mode="modal">  
+          <button>Log In</button>
+        </SignInButton>  
+      </SignedOut>
+      <SignedIn>
+        <SignOutButton/>  
+      </SignedIn>
+      <UserButton />
     </>
   )
 }
