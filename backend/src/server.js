@@ -5,17 +5,21 @@ import { serve } from "inngest/express";
 import { ENV } from "./lib/env.js";
 import { connectDB } from "./lib/db.js";
 import { inngest, functions } from "./lib/inngest.js";
+import {clerkMiddleware} from "@clerk/express";
+import chatRoutes from "./routes/chatRoutes.js";
+
 
 const app = express();
 
 const __dirname = path.resolve();
-
+app.use(clerkMiddleware()); // this adds value to the request object(authentication) i.e req.auth
 // middleware
 app.use(express.json());
 // credentials:true meaning?? => server allows a browser to include cookies on request
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 
 app.use("/api/inngest", serve({ client: inngest, functions }));
+app.use("/api/chat",chatRoutes);
 
 // make our app ready for deployment
 if (ENV.NODE_ENV === "production") {
