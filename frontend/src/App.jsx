@@ -11,7 +11,7 @@ function App() {
      </SignInButton>  
   </SignedOut>
 <SignedIn>
-  <SignOutButton  mode="modal"/>
+  <SignOutButton/>
 </SignedIn>
   <UserButton />
     </>
