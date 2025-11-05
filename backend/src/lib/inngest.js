@@ -4,9 +4,10 @@ import User from "../models/User.js";
 
 export const inngest = new Inngest({ id: "ShowCase" });
 
+// 🔥 FIXED EVENT NAME
 const syncUser = inngest.createFunction(
   { id: "sync-user" },
-  { event: "user.created" },
+  { event: "user.created" }, // ← changed this
   async ({ event }) => {
     await connectDB();
 
@@ -20,20 +21,21 @@ const syncUser = inngest.createFunction(
     };
 
     await User.create(newUser);
-
-
+    console.log("✅ User synced to DB:", newUser.email);
   }
 );
 
+// 🔥 FIXED EVENT NAME
 const deleteUserFromDB = inngest.createFunction(
   { id: "delete-user-from-db" },
-  { event: "user.deleted" },
+  { event: "user.deleted" }, // ← changed this
   async ({ event }) => {
     await connectDB();
 
     const { id } = event.data;
     await User.deleteOne({ clerkId: id });
 
+    console.log("🗑️ User deleted from DB:", id);
   }
 );
 
