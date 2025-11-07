@@ -6,8 +6,7 @@ import { ENV } from "./env.js";
 if (!ENV.STREAM_API_KEY || !ENV.STREAM_API_SECRET) {
   throw new Error("Stream API key and secret must be defined in environment variables.");
 }
-
-// ✅ Create Stream client instance
+//stream client for video calling
 export const streamClient =  new StreamClient(
   ENV.STREAM_API_KEY,
   ENV.STREAM_API_SECRET
