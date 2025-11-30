@@ -11,7 +11,7 @@
       <nav className = 'bg-base-100/80 backdrop-blur-md border-b border-primary/20 sticky top-0 z-50 shadow-lg'>
         <div className = 'p-4 flex items-center justify-between mx-auto max-w-7xl'>
           <Link to = "/"
-          className = "flex items-center gap-3 hover:scale-105 transition:transform duration-200">
+          className = "flex items-center gap-3 hover:scale-105 transition-transform duration-200">
             <div className = "size-10 rounded-xl bg-primary flex items-center justify-center shadow-lg">
             <SparklesIcon className = "size-6 text-white"/>
             </div>
@@ -27,7 +27,7 @@
           <SignInButton mode = "modal">
             <button className = "group px-6 py-3  bg-primary rounded-xl text-white font-semibold text-sm shadow-lg hover:shadoiw-xl transition-all duration-200 hover:scale-105 flex items-center gap-2">
               <span>Get Started</span>
-              <ArrowRightIcon className = "size-4 group-hover:translate-x-1 transition:transform duration:200"/>
+              <ArrowRightIcon className = "size-4 group-hover:translate-x-1 transition-transform duration:200"/>
             </button>
           </SignInButton>
         </div>      
@@ -98,7 +98,7 @@
           {/* RIGHT IMAGE */}
           <img src = "./hero.png"
           alt = "Coding Image"
-          className = "w-full h-auto rounded-3xl shadow-2xl border-4 border-base-100 hover:scale-105 transition:transform duration:500"/>
+          className = "w-full h-auto rounded-3xl shadow-2xl border-4 border-base-100 hover:scale-105 transition-transform duration:500"/>
         </div>
       </div>
       {/* FEATURES SECTION */}
