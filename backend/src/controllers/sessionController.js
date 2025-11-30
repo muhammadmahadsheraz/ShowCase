@@ -20,6 +20,9 @@ export async function createSession(req, res) {
       host: userId,
       callId,
     });
+    if (!newSession) {
+      return res.status(500).json({ message: "Failed to create session" });
+    }
 
     // create Stream video call
     await streamClient.video.call("default", callId).getOrCreate({
@@ -140,7 +143,9 @@ export async function joinSessionById(req, res) {
     if (session.status !== "active") {
       return res.status(400).json({ message: "Cannot join an inactive session" });
     }
-
+    if( session.host.toString() === userId.toString()) {
+      return res.status(400).json({ message: "Host cannot join as participant" });
+    }
     if (session.participant) {
       return res.status(400).json({ message: "Session is already full" });
     }
