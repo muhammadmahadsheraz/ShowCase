@@ -14,7 +14,6 @@ const app = express();
 
 const __dirname = path.resolve();
 app.use(clerkMiddleware()); // this adds value to the request object(authentication) i.e req.auth
-// middleware
 app.use(express.json());
 // credentials:true meaning?? => server allows a browser to include cookies on request
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
