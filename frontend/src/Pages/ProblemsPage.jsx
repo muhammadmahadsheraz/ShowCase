@@ -1,9 +1,98 @@
-import React from 'react'
+import Navbar from '../components/Navbar.jsx';
+import {PROBLEMS} from '../data/problems'
+import { getDifficulty } from '../lib/utils.js';
+import {Link} from 'react-router';
+import {ChevronRightIcon, Code2Icon} from 'lucide-react';
 
 export default function ProblemsPage() {
+  const problems = Object.values(PROBLEMS);
+  const easyProblemsCount = problems.filter(problem => problem.difficulty.toLowerCase() === 'easy');
+  const mediumProblemsCount = problems.filter(problem => problem.difficulty.toLowerCase() === 'medium');
+  const hardProblemsCount = problems.filter(problem => problem.difficulty.toLowerCase() === 'hard');
   return (
-    <div>
-      Problems Page
-    </div>
+    <div className = "bg-base-200 min-h-screen">
+      <Navbar />
+      <div className = "max-w-7xl mx-auto px-4 py-12">
+        
+        {/* HEADER */}
+
+        <div className = "mb-8">
+          <h1 className = "text-4xl font-bold mb-2" >
+            Practice Problems
+          </h1>
+          <p className = "text-base-content/70">
+          Sharpen your coding Skills with these curated Problems
+          </p>
+        </div>
+
+        {/*PROBLEMS LIST */}
+
+          <div className = "space-y-4">
+            {problems.map(problem =>(
+              <Link key = {problem.id}
+              to = {`/problem/${problem.id}`}
+              className = "card bg-base-100 hover:scale-[1.01] transition-transform">
+                <div className = "card-body">
+                  <div className = "flex items-center justify-between gap-4">
+                    {/*LEFT SIDE */}
+                    <div className = "flex-1">
+                      <div className = "flex items-center gap-3 mb-2">
+                        <div className = " size-12 rounded-lg bg-primary/10 flex items-center justify-center ">
+                        <Code2Icon className = "size-6 text-primary"/>
+                        </div>
+                        <div className = "flex-1">
+                          <div className = "flex items-center gap-2 mb-1">
+                            <h2 className = "text-xl font-bold" >{problem.title}</h2>
+                            <span className = {`badge ${getDifficulty(problem.difficulty)}`}>
+                              {problem.difficulty}
+                            </span>
+                          </div>
+                          <p className = "text-sm text-base-content/60">{problem.category}</p>
+                        </div>
+                      </div>
+                      <p className = "text-base-content/80 mb-3">{problem.description.text}</p>
+                    </div>
+                    {/* RIGHT SIDE */}
+                    <div className = "flex items-center gap-2 text-primary">
+                      <span className = "font-medium">Solve</span>
+                      <ChevronRightIcon className = "size-6"/>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {/* STATS FOOTER */}
+          <div className = "mt-12 card bg-base-100 shadow-lg">
+            <div className = "card-body">
+              <div className = "stats stats-vertical lg:stats-horizontal">
+                {/*STAT 1*/} 
+                <div className = "stats">
+
+                <div className = "stat">
+                  <div className = "stats-title">Total Problems</div>
+                  <div className = "stat-value text-primary ">{problems.length}</div>
+                </div>
+                {/*STAT 2*/} 
+                <div className = "stat">
+                  <div className = "stats-title">Easy Problems</div>
+                  <div className = "stat-value text-primary ">{easyProblemsCount.length}</div>
+                </div>
+                {/*STAT 3*/} 
+                <div className = "stat">
+                  <div className = "stats-title">Medium Problems</div>
+                  <div className = "stat-value text-primary ">{mediumProblemsCount.length}</div>
+                </div>
+                {/*STAT 4*/} 
+                <div className = "stat">
+                  <div className = "stats-title">Hard Problems</div>
+                  <div className = "stat-value text-primary ">{hardProblemsCount.length}</div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+     </div>
+   </div>
   )
 }
